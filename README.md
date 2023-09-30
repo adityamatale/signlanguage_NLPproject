@@ -1,1 +1,1 @@
-## End to End Sign Language Recognition Project
+## End to End machine learning project
