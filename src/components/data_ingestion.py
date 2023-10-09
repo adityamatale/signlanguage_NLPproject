@@ -2,7 +2,6 @@ import os
 import sys
 sys.path.append('D:\VIT -COLLEGE\TY_\sem1\EDI\git_repo_ADITYA_M\signlanguage_NLPproject')
 
-#un comment the below part later...
 from src.exception import CustomException
 from src.logger import logging
 import pandas as pd
@@ -10,23 +9,9 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
-# # #comment this section later
-# def error_message_detail(error,error_detail:sys):
-#     _,_,exc_tb=error_detail.exc_info()
-#     file_name=exc_tb.tb_frame.f_code.co_filename
-#     error_message="Error occured in python script name[{0}] line number[{1}] error message[{2}]".format(
-#     file_name, exc_tb.tb_lineno, str(error))
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConfig
 
-#     return error_message
-# class CustomException(Exception):
-#     def __init__(self, error_message, error_detail:sys):
-#         super().__init__(error_message)
-#         self.error_message=error_message_detail(error_message, error_detail=error_detail)
-
-#     def __str__(self):
-#         return self.error_message
-
-# #comment the above section later
 
 @dataclass
 class DataIngestionConfig:
@@ -68,6 +53,9 @@ class DataIngestion:
 
 if __name__=="__main__":
     obj=DataIngestion()
-    obj.initiate_data_ingestion()
+    train_data, test_data = obj.initiate_data_ingestion()
+
+    data_transformation = DataTransformation()
+    data_transformation.initiate_data_transformation(train_data, test_data)
 
 
